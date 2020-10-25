@@ -9,11 +9,14 @@ namespace OrderService.Connections
         private readonly IConnection _connection;
         private bool _disposed;
 
-        public ConnectionProviderImpl(string hostName)
+        public ConnectionProviderImpl(string hostName, string username, string password)
         {
             _factory = new ConnectionFactory
             {
-                HostName = hostName
+                //Uri = new Uri(connectionString),
+                HostName = hostName,
+                UserName = username,
+                Password = password,
             };
 
             _connection = _factory.CreateConnection();

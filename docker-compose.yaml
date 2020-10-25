@@ -1,0 +1,39 @@
+﻿version: '3.4'
+
+networks: 
+    microservice-network-dev:
+        driver: bridge
+
+services:
+    orderservice:
+        image: thijsthijssen/orderservice:latest
+        depends_on:
+            - rabbitmq
+        build:
+            context: OrderService/
+            dockerfile: Dockerfile
+        ports: 
+            - "5000:80"
+        networks: 
+            - microservice-network-dev
+
+    customerservice:
+        image: thijsthijssen/customerservice:latest
+        depends_on:
+            - rabbitmq
+        build:
+            context: CustomerService/
+            dockerfile: Dockerfile
+        ports: 
+            - "6000:80"
+        networks: 
+            - microservice-network-dev
+    
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        hostname: "message-broker"
+        networks:
+            - microservice-network-dev
