@@ -1,0 +1,13 @@
+﻿using System;
+using System.Threading.Tasks;
+using OrderService.Models;
+
+namespace OrderService.Services
+{
+    public interface IOrderService
+    {
+        Task<Order> CreateOrder(Order order);
+        Task<Order> GetOrderById(long orderId);
+        Task<Order> UpdateOrderById(long orderId, Order order);
+    }
+}
