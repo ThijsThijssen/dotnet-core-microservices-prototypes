@@ -1,0 +1,5 @@
+{"container":"rabbitmq_0d211279-9"}
+{"container":"elastic_b321f8f6-c"}
+{"container":"zipkin_c9895a55-f"}
+{"container":"orderservice-proxy_ca61365e-f"}
+{"container":"customerservice-proxy_20437d0a-a"}

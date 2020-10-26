@@ -32,11 +32,7 @@ namespace CustomerService
             services.AddControllers();
 
             services.AddSingleton<IConnectionProvider>(
-                new ConnectionProviderImpl(
-                    //connectionString: "amqp://guest:guest@rabbitmq:5672/",
-                    hostName:"rabbitmq",
-                    username: "guest",
-                    password: "guest"));
+                new ConnectionProviderImpl(connectionString: Configuration.GetConnectionString("rabbitmq")));
 
             services.AddSingleton<ICustomerDao, CustomerDaoImpl>();
             services.AddSingleton<ICustomerService, CustomerServiceImpl>();

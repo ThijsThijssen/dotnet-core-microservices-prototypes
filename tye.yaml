@@ -1,0 +1,23 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: prototypemicroservices
+
+extensions:
+- name: elastic
+  logPath: ./.logs
+- name: zipkin
+
+services:
+- name: rabbitmq
+  image: rabbitmq:3-management-alpine
+  bindings:
+  - port: 5672
+    connectionString: "amqp://guest:guest@${host}:${port}"
+- name: orderservice
+  project: OrderService/OrderService.csproj
+- name: customerservice
+  project: CustomerService/CustomerService.csproj
